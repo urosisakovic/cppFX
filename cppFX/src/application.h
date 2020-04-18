@@ -1,7 +1,13 @@
 #pragma once
+#include <GL/glew.h>
+#include <GL/freeglut.h>
+#include <GL/freeglut_ext.h>
+#include "utility/glutils.h"
+
 
 namespace cppfx
 {
+
     class Application 
     {
     public:
@@ -13,4 +19,5 @@ namespace cppfx
     protected:
         virtual void run() = 0;
     };
-}
+
+} // namespace cppfx

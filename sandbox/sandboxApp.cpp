@@ -2,11 +2,32 @@
 #include <memory>
 #include <iostream>
 
+
 class Sandbox : public cppfx::Application
 {
     void run() 
     {
-        std::cout << "Sandbox::run()" << std::endl;
+        // init(argc, argv);
+
+        cppfx::Group* root = new cppfx::Group();
+
+        cppfx::Cube* c = new cppfx::Cube();
+        c->transform(Translate(-0.5, 0, 0));
+        c->transform(RotateZ(30));
+
+        cppfx::Cube *d = new cppfx::Cube();
+        d->transform(Translate(0.5, 0, 0));
+        d->transform(RotateZ(-30));
+
+        root->add(c);
+        root->add(d);
+
+        root->transform(RotateX(40));
+        root->render();
+
+        glutMainLoop();
+
+        delete root;
     }
 };
 
