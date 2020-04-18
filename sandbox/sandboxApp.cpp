@@ -7,15 +7,13 @@ class Sandbox : public cppfx::Application
 {
     void run() 
     {
-        // init(argc, argv);
+        auto root = new cppfx::Group();
 
-        cppfx::Group* root = new cppfx::Group();
-
-        cppfx::Cube* c = new cppfx::Cube();
+        auto c = new cppfx::Cube();
         c->transform(Translate(-0.5, 0, 0));
         c->transform(RotateZ(30));
 
-        cppfx::Cube *d = new cppfx::Cube();
+        auto d = new cppfx::Cube();
         d->transform(Translate(0.5, 0, 0));
         d->transform(RotateZ(-30));
 
@@ -24,15 +22,11 @@ class Sandbox : public cppfx::Application
 
         root->transform(RotateX(40));
         root->render();
-
-        glutMainLoop();
-
-        delete root;
     }
 };
 
 int main(int argc, char** argv) 
 {
-    std::unique_ptr<Sandbox> sandbox = std::make_unique<Sandbox>();
+    auto sandbox = std::make_unique<Sandbox>();
     sandbox->launch(argc, argv);
 }

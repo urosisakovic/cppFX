@@ -26,7 +26,7 @@ namespace cppfx
 
         run();
 
-        
+        glutMainLoop();
     }
 
 } // namespace cppfx 
