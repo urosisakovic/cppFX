@@ -28,7 +28,7 @@ namespace cppfx
         }
 
         // prepare shader program
-        shader = new Shader("cppFX/src/shaders/vertex.glsl", "cppFX/src/shaders/fragment.glsl");
+        shader = new Shader("/home/uros/src/cppFX/cppFX/src/shaders/vertex.glsl", "/home/uros/src/cppFX/cppFX/src/shaders/fragment.glsl");
         shader->bind();
 
         // create a vertex array object
