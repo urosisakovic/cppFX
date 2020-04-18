@@ -1,11 +1,9 @@
+#include "cppFX.h"
 #include <memory>
-#include "application.h"
-
 #include <iostream>
 
 class Sandbox : public cppfx::Application
 {
-protected:
     void run() 
     {
         std::cout << "Sandbox::run()" << std::endl;

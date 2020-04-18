@@ -1,2 +1,2 @@
 app:
-	g++ cppFX/application.cpp sandbox/sandboxApp.cpp -IcppFX -o app
+	g++ cppFX/src/application.cpp sandbox/sandboxApp.cpp -IcppFX/include -o app
