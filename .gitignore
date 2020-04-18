@@ -36,3 +36,7 @@ app
 
 # Todo file
 todo
+
+# binaries
+/bin
+/bin-int
