@@ -40,3 +40,9 @@ todo
 # binaries
 /bin
 /bin-int
+
+# makefiles
+Makefile
+makefile
+**/Makefile
+**/makefile
