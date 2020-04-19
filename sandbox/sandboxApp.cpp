@@ -2,32 +2,46 @@
 #include <memory>
 #include <iostream>
 
-
-class Sandbox : public cppfx::Application
+namespace cppfx 
 {
-    void run(cppfx::Stage* stage) override
+
+    class Sandbox : public Application
     {
-        auto c = new cppfx::Cube();
-        c->transform(Translate(-0.5, 0, 0));
-        c->transform(RotateZ(30));
+        void run(Stage* stage) override
+        {
+            WindowResizeEvent e(1280, 720);
+            if (e.isInCategory(EventCategoryApplication))
+            {
+                std::cout << e << std::endl;
+            }
+            if (e.isInCategory(EventCategoryInput))
+            {
+                std::cout << e << std::endl;
+            }
 
-        auto d = new cppfx::Cube();
-        d->transform(Translate(0.5, 0, 0));
-        d->transform(RotateZ(-30));
+            auto c = new Cube();
+            c->transform(Translate(-0.5, 0, 0));
+            c->transform(RotateZ(30));
 
-        auto root = new cppfx::Group();
-        root->add(c);
-        root->add(d);
-        root->transform(RotateX(40));
+            auto d = new Cube();
+            d->transform(Translate(0.5, 0, 0));
+            d->transform(RotateZ(-30));
 
-        stage->setSize(1024, 1024);
-        stage->setTitle("Moving Cube");
-        stage->setRoot(root);
-    }
-};
+            auto root = new Group();
+            root->add(c);
+            root->add(d);
+            root->transform(RotateX(40));
+
+            stage->setSize(1024, 1024);
+            stage->setTitle("Moving Cube");
+            stage->setRoot(root);
+        }
+    };
+
+} // namespace cppfx
 
 int main(int argc, char** argv) 
 {
-    auto sandbox = std::make_unique<Sandbox>();
+    auto sandbox = std::make_unique<cppfx::Sandbox>();
     sandbox->launch(argc, argv);
 }

@@ -12,3 +12,11 @@
 #include "../src/cube.h"
 #include "../src/group.h"
 #include "../src/stage.h"
+
+// Event system
+#include "../src/events/event.h"
+#include "../src/events/eventDispatcher.h"
+#include "../src/events/keyEvent.h"
+#include "../src/events/mouseEvent.h"
+#include "../src/events/applicationEvent.h"
+
