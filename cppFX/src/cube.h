@@ -13,7 +13,7 @@ namespace cppfx
         Cube();
         ~Cube();
 
-        void render() const;
+        void render();
 
     private:
         static const int POINTS_CNT = 36;
@@ -23,6 +23,9 @@ namespace cppfx
         static void initialize();
         static point4 points[POINTS_CNT];
         static bool initialzed;
+
+        bool lazyInit = false;
+        void lazyInitialization();
 
         GLuint modelViewLoc;
 

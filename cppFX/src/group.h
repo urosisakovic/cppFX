@@ -13,7 +13,7 @@ namespace cppfx
         Group();
         ~Group();
 
-        void render() const override;
+        void render() override;
 
         void add(Node*);
     private:

@@ -1,30 +1,34 @@
 #include "application.h"
-
+#include <iostream>
 
 namespace cppfx
 {
 
     Application::Application()
     {
+        stage = new Stage();
     }
 
     Application::~Application()
     {
+        delete stage;
     }
 
     void Application::launch(int argc, char** argv)
     {
+        run(stage);
+
         glutInit(&argc, argv);
         glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH); 
-        glutInitWindowSize(512, 512);
-        glutCreateWindow("OO Cube");
 
+        glutInitWindowSize(stage->getWidth(), stage->getHeight());
+        std::cout << "stage->getTitle(): " << stage->getTitle() << std::endl;
+        glutCreateWindow(stage->getTitle());
+
+        GLCall(glEnable(GL_DEPTH_TEST));
         glewInit();
 
-        GLCall(glClearColor(1.0, 1.0, 1.0, 1.0));
-        GLCall(glEnable(GL_DEPTH_TEST));
-
-        run();
+        stage->getRoot()->render();
 
         glutMainLoop();
     }

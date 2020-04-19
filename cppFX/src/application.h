@@ -3,7 +3,7 @@
 #include <GL/freeglut.h>
 #include <GL/freeglut_ext.h>
 #include "utility/glutils.h"
-
+#include "stage.h"
 
 namespace cppfx
 {
@@ -17,7 +17,10 @@ namespace cppfx
         void launch(int argc, char** argv);
 
     protected:
-        virtual void run() = 0;
+        virtual void run(Stage*) = 0;
+
+    private:
+        Stage* stage;
     };
 
 } // namespace cppfx

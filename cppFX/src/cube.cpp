@@ -21,32 +21,6 @@ namespace cppfx
 
     Cube::Cube()
     {
-        if (!initialzed) 
-        {
-            initialize();
-            initialzed = true;
-        }
-
-        // prepare shader program
-        shader = new Shader("/home/uros/src/cppFX/cppFX/src/shaders/vertex.glsl", "/home/uros/src/cppFX/cppFX/src/shaders/fragment.glsl");
-        shader->bind();
-
-        // create a vertex array object
-        GLCall(glGenVertexArrays(1, &vao));
-        GLCall(glBindVertexArray(vao));
-
-        // create and initialize a buffer object
-        GLuint buffer;
-        GLCall(glGenBuffers(1, &buffer));
-        GLCall(glBindBuffer(GL_ARRAY_BUFFER, buffer));
-        GLCall(glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW));
-
-        // initialize the vertex position attribute form the vertex shader
-        GLCall(GLuint loc = glGetAttribLocation(shader->getProgram(), "vPosition"));
-        GLCall(glEnableVertexAttribArray(loc));
-        GLCall(glVertexAttribPointer(loc, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0)));
-
-        GLCall(modelViewLoc = glGetUniformLocation(shader->getProgram(), "modelView"));
     }
 
     Cube::~Cube()
@@ -54,8 +28,13 @@ namespace cppfx
         delete shader;
     }
 
-    void Cube::render() const
+    void Cube::render()
     {
+        if (!lazyInit) {
+            lazyInit = true;
+            lazyInitialization();
+        }
+
         GLCall(glBindVertexArray(vao));
         shader->bind();
 
@@ -82,6 +61,36 @@ namespace cppfx
         square(4, 0, 3, 7);
         square(4, 5, 1, 0);
         square(3, 2, 6, 7);
+    }
+
+    void Cube::lazyInitialization()
+    {
+        if (!initialzed) 
+        {
+            initialize();
+            initialzed = true;
+        }
+
+        // prepare shader program
+        shader = new Shader("/home/uros/src/cppFX/cppFX/src/shaders/vertex.glsl", "/home/uros/src/cppFX/cppFX/src/shaders/fragment.glsl");
+        shader->bind();
+
+        // create a vertex array object
+        GLCall(glGenVertexArrays(1, &vao));
+        GLCall(glBindVertexArray(vao));
+
+        // create and initialize a buffer object
+        GLuint buffer;
+        GLCall(glGenBuffers(1, &buffer));
+        GLCall(glBindBuffer(GL_ARRAY_BUFFER, buffer));
+        GLCall(glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW));
+
+        // initialize the vertex position attribute form the vertex shader
+        GLCall(GLuint loc = glGetAttribLocation(shader->getProgram(), "vPosition"));
+        GLCall(glEnableVertexAttribArray(loc));
+        GLCall(glVertexAttribPointer(loc, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0)));
+
+        GLCall(modelViewLoc = glGetUniformLocation(shader->getProgram(), "modelView"));
     }
 
 } //namespace cppfx

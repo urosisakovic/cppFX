@@ -11,3 +11,4 @@
 #include "../src/node.h"
 #include "../src/cube.h"
 #include "../src/group.h"
+#include "../src/stage.h"
